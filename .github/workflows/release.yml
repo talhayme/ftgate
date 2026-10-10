@@ -25,6 +25,9 @@ jobs:
 
   publish:
     needs: build
+    # Skipped (not failed) until the PyPI trusted publisher exists: set the
+    # repository variable PYPI_TRUSTED_PUBLISHER=true once it is configured.
+    if: ${{ vars.PYPI_TRUSTED_PUBLISHER == 'true' }}
     runs-on: ubuntu-latest
     environment: pypi
     permissions:

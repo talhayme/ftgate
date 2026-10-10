@@ -40,7 +40,7 @@ checked before any tool code was written — the same way
 ## Use
 
 ```
-uv pip install -e .
+pip install ftgate
 ftgate template --model Qwen/Qwen2.5-0.5B-Instruct \
                 --llama http://localhost:8080 \
                 --ollama qwen2.5:0.5b-instruct \
