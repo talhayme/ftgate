@@ -1,0 +1,5 @@
+transformers>=4.45
+requests>=2.31
+
+[dev]
+pytest

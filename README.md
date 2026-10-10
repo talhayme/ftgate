@@ -4,7 +4,7 @@ Regression checks for a small model you fine-tuned on tool calling: do the
 bytes the runtime sends match the bytes the model was trained on, and does
 it still call your tools correctly after export and quantisation?
 
-**Status: days 1–2 of a reproduction, not a tool yet.** The premise was
+**Status: day 3 — `ftgate template` works; `ftgate data` is next.** The premise was
 checked before any tool code was written — the same way
 [pr-witness](https://github.com/talhayme/pr-witness) was built.
 
@@ -18,6 +18,12 @@ checked before any tool code was written — the same way
   schema**: `{get_weather … {object <nil> <nil> [city] {…}}}`. Root cause
   in `template/template.go` (`templateToolFunction` has no `String()`);
   known upstream as ollama/ollama#14601 with open PRs #18318 and #18391.
+- **Ollama's own GGUF blobs embed a chat template with doubled braces**
+  (`{{"name": …}}` where HF and a fresh conversion have `{"name": …}`).
+  Ollama never renders it, but llama.cpp or vLLM serving that blob do.
+  → [`notes/day3-template-command.md`](notes/day3-template-command.md)
+- **Ollama prepends the Modelfile SYSTEM** when a request has none — a
+  system prompt your training rows may never have had.
 - **It costs accuracy.** Same GGUF blob in every arm, temperature 0, 40
   cases: Qwen2.5-0.5B gets exact arguments 39/40 with its own template and
   31/40 with the prompt Ollama builds — every failure an invented
@@ -25,7 +31,25 @@ checked before any tool code was written — the same way
   to_currency]` rendering of `required`. Qwen2.5-1.5B: 40/40 either way on
   this easy set. → [`notes/day2-impact.md`](notes/day2-impact.md)
 
-## Reproduce
+## Use
+
+```
+uv pip install -e .
+ftgate template --model Qwen/Qwen2.5-0.5B-Instruct \
+                --llama http://localhost:8080 \
+                --ollama qwen2.5:0.5b-instruct \
+                --dataset train.jsonl --sample 20 --diff
+```
+
+`--model` is the HF checkpoint whose tokenizer and chat template the
+trainer used; `--dataset` is your own rows (`messages[, tools]` per line).
+Each runtime's prompt and token ids are compared with what SFT fed the
+model, and every difference is classified: `schema_not_json`,
+`injected_system`, `special_prefix`, `structural`, `spacing`, `tokenizer`.
+Ollama's column is rendered with Ollama's own `template` package (build
+`bin/` once) and cross-checked against the live `prompt_eval_count`.
+
+## Reproduce the findings
 
 ```
 uv venv --python 3.12 ~/.venvs/ftgate && uv pip install --python ~/.venvs/ftgate/bin/python torch transformers gguf requests

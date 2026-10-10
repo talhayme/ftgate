@@ -1,0 +1,2 @@
+[console_scripts]
+ftgate = ftgate.cli:main
