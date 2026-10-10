@@ -13,12 +13,18 @@ dev = ["pytest"]
 [project.scripts]
 ftgate = "ftgate.cli:main"
 
+[project.entry-points.pytest11]
+ftgate = "ftgate.pytest_plugin"
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+ftgate = ["assets/*.js"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

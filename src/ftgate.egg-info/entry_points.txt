@@ -1,2 +1,5 @@
 [console_scripts]
 ftgate = ftgate.cli:main
+
+[pytest11]
+ftgate = ftgate.pytest_plugin

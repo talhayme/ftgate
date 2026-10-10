@@ -1,0 +1,57 @@
+name: ftgate data
+description: Lint fine-tuning datasets with the target model's tokenizer and chat template. Fails on rows that train nothing.
+author: Vitalii Bogachev
+branding: { icon: check-square, color: purple }
+
+inputs:
+  dataset:
+    description: JSONL file(s), space-separated
+    required: true
+  model:
+    description: HF model id whose tokenizer and chat template the trainer uses (enables length/EOS/template checks)
+    required: false
+    default: ""
+  max-seq-len:
+    description: The trainer's cutoff; rows cut before the answer are errors
+    required: false
+    default: ""
+  eval:
+    description: Eval set to check for near-duplicate leakage
+    required: false
+    default: ""
+  fail-on:
+    description: never | warning | error
+    required: false
+    default: error
+  python-version:
+    required: false
+    default: "3.12"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v7
+      with: { python-version: "${{ inputs.python-version }}" }
+    - shell: bash
+      run: python -m pip install --quiet "$GITHUB_ACTION_PATH"
+    - shell: bash
+      env:
+        DATASET: ${{ inputs.dataset }}
+        MODEL: ${{ inputs.model }}
+        MSL: ${{ inputs.max-seq-len }}
+        EVALSET: ${{ inputs.eval }}
+        FAIL_ON: ${{ inputs.fail-on }}
+      run: |
+        set +e
+        args=()
+        [ -n "$MODEL" ] && args+=(--model "$MODEL")
+        [ -n "$MSL" ] && args+=(--max-seq-len "$MSL")
+        [ -n "$EVALSET" ] && args+=(--eval "$EVALSET")
+        ftgate data $DATASET "${args[@]}" --fail-on "$FAIL_ON" | tee "$RUNNER_TEMP/ftgate.txt"
+        code=${PIPESTATUS[0]}
+        { echo '```'; cat "$RUNNER_TEMP/ftgate.txt"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+        ftgate data $DATASET "${args[@]}" --format json > "$RUNNER_TEMP/ftgate.json" || true
+        exit $code
+    - uses: actions/upload-artifact@v7
+      if: always()
+      with: { name: ftgate-report, path: "${{ runner.temp }}/ftgate.json", retention-days: 30 }

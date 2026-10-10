@@ -1,0 +1,8 @@
+- id: ftgate-data
+  name: ftgate data (lint fine-tuning datasets)
+  description: Structural checks on JSONL training rows; add --model for tokenizer and template checks.
+  entry: ftgate data
+  language: python
+  files: \.jsonl$
+  args: [--fail-on, error]
+  pass_filenames: true

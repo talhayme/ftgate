@@ -6,8 +6,10 @@ src/ftgate/cli.py
 src/ftgate/compare.py
 src/ftgate/conversations.py
 src/ftgate/data.py
+src/ftgate/pytest_plugin.py
 src/ftgate/reference.py
 src/ftgate/render.py
+src/ftgate/testing.py
 src/ftgate/tools_eval.py
 src/ftgate.egg-info/PKG-INFO
 src/ftgate.egg-info/SOURCES.txt
@@ -15,8 +17,11 @@ src/ftgate.egg-info/dependency_links.txt
 src/ftgate.egg-info/entry_points.txt
 src/ftgate.egg-info/requires.txt
 src/ftgate.egg-info/top_level.txt
+src/ftgate/assets/assert_tools.js
 src/ftgate/runtimes/__init__.py
 src/ftgate/runtimes/llama.py
 src/ftgate/runtimes/ollama.py
 tests/test_compare.py
 tests/test_data.py
+tests/test_integrations.py
+tests/test_tools_eval.py

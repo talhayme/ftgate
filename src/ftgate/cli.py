@@ -38,13 +38,17 @@ def cmd_tools(args) -> int:
 
 
 def cmd_data(args) -> int:
-    rep = data_mod.lint(Path(args.path), model=args.model, max_seq_len=args.max_seq_len,
-                        eval_path=Path(args.eval) if args.eval else None, limit=args.limit)
-    print(_json.dumps(rep.as_dict(), indent=2, ensure_ascii=False) if args.format == "json" else data_mod.to_text(rep), end="")
+    reps = [data_mod.lint(Path(p), model=args.model, max_seq_len=args.max_seq_len,
+                          eval_path=Path(args.eval) if args.eval else None, limit=args.limit) for p in args.path]
+    if args.format == "json":
+        print(_json.dumps([r.as_dict() for r in reps] if len(reps) > 1 else reps[0].as_dict(), indent=2, ensure_ascii=False))
+    else:
+        print("".join(data_mod.to_text(r) for r in reps), end="")
+    errors = sum(r.count("error") for r in reps); warnings = sum(r.count("warning") for r in reps)
     if args.fail_on == "error":
-        return 1 if rep.count("error") else 0
+        return 1 if errors else 0
     if args.fail_on == "warning":
-        return 1 if rep.count("error") or rep.count("warning") else 0
+        return 1 if errors or warnings else 0
     return 0
 
 
@@ -91,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
     t.set_defaults(func=cmd_template)
 
     d = sub.add_parser("data", help="lint a fine-tuning dataset with the target model's tokenizer and template")
-    d.add_argument("path", help="JSONL: messages / ShareGPT / Alpaca / preference rows")
+    d.add_argument("path", nargs="+", help="JSONL file(s): messages / ShareGPT / Alpaca / preference rows")
     d.add_argument("--model", help="HF model id; enables tokenizer and template checks")
     d.add_argument("--max-seq-len", type=int, help="the trainer's cutoff; rows beyond it are reported")
     d.add_argument("--eval", metavar="JSONL", help="eval set to check for leakage (near-duplicates)")

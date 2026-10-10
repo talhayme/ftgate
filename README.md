@@ -95,6 +95,32 @@ wrong": **parser lost** — the model emitted a `<tool_call>` the provider
 did not surface — and **malformed** — the call's JSON does not parse.
 Failure reasons show the produced arguments next to the expected ones.
 
+### In CI, in tests, before commit
+
+```yaml
+# GitHub Actions
+- uses: talhayme/ftgate@main
+  with: { dataset: data/train.jsonl, model: Qwen/Qwen2.5-0.5B-Instruct, max-seq-len: "2048" }
+```
+
+```yaml
+# .pre-commit-config.yaml
+- repo: https://github.com/talhayme/ftgate
+  rev: main
+  hooks: [{ id: ftgate-data, args: [--fail-on, error] }]
+```
+
+```python
+# tests/test_data.py
+from ftgate.testing import assert_dataset_clean
+
+def test_training_data():
+    assert_dataset_clean("data/train.jsonl", model="Qwen/Qwen2.5-0.5B-Instruct", max_seq_len=2048)
+```
+
+or, with the plugin that installs alongside the package,
+`pytest --ftgate-dataset data/train.jsonl --ftgate-model Qwen/Qwen2.5-0.5B-Instruct`.
+
 ## Reproduce the findings
 
 ```
