@@ -4,7 +4,7 @@ Regression checks for a small model you fine-tuned on tool calling: do the
 bytes the runtime sends match the bytes the model was trained on, and does
 it still call your tools correctly after export and quantisation?
 
-**Status: day 5 — `ftgate template` and `ftgate data` work.** The premise was
+**Status: `ftgate template`, `ftgate data` and `ftgate tools` work.** The premise was
 checked before any tool code was written — the same way
 [pr-witness](https://github.com/talhayme/pr-witness) was built.
 
@@ -72,6 +72,28 @@ declared schema (missing required / unknown arguments / undeclared tool /
 `tool_call_id` with no call), `chosen == rejected`, length bias in
 preference pairs, exact duplicates, near-duplicates of the eval set.
 `--format json` for CI; `--fail-on error|warning` sets the exit code.
+
+### `ftgate tools` — does it still call *your* tools, on the backend it will run on?
+
+```
+ftgate tools --tools tools.json --cases cases.jsonl \
+             --provider ollama:my-finetune:q4_k_m \
+             --provider "openai:m@http://localhost:8080/v1" \
+             --min-exact 0.8
+ftgate tools --from-dataset train.jsonl --holdout 50 --provider ollama:my-finetune
+```
+
+Evaluation runs on [promptfoo](https://www.promptfoo.dev/) (installed
+once with `npm install --prefix .pfrunner promptfoo`, or set
+`FTGATE_PROMPTFOO`). ftgate writes the config — your tools, your cases
+(a file, or rows held out of your own training set), one provider per
+arm, temperature 0, one request in flight for local servers — and a
+deterministic judge that reports per case: the right tool, every expected
+argument present and equal (extra optional arguments allowed and counted),
+and two things a generic eval does not separate from "the model was
+wrong": **parser lost** — the model emitted a `<tool_call>` the provider
+did not surface — and **malformed** — the call's JSON does not parse.
+Failure reasons show the produced arguments next to the expected ones.
 
 ## Reproduce the findings
 

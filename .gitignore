@@ -5,3 +5,5 @@ __pycache__/
 bin/ollama-render
 survey/raw/
 survey/adapted/
+.pfrunner/node_modules/
+.pfrunner/package-lock.json

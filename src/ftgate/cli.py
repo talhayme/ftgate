@@ -12,6 +12,29 @@ from ftgate.runtimes import llama as llama_rt
 from ftgate.runtimes import ollama as ollama_rt
 from ftgate import data as data_mod
 import json as _json
+from ftgate import tools_eval
+
+
+def cmd_tools(args) -> int:
+    tools = _json.loads(Path(args.tools).read_text(encoding="utf-8")) if args.tools else []
+    if args.from_dataset:
+        cases, ds_tools = tools_eval.cases_from_dataset(Path(args.from_dataset), args.holdout)
+        tools = tools or ds_tools
+    else:
+        cases = tools_eval.load_cases(Path(args.cases))
+    if not cases:
+        print("no cases", file=sys.stderr); return 2
+    if not tools:
+        print("no tools: pass --tools tools.json (or a dataset whose rows carry `tools`)", file=sys.stderr); return 2
+    arms = tools_eval.run(cases, tools, args.provider, keep=Path(args.keep) if args.keep else None, concurrency=args.concurrency)
+    if args.format == "json":
+        print(_json.dumps([a.__dict__ for a in arms], indent=2, ensure_ascii=False))
+    else:
+        print(tools_eval.to_text(arms), end="")
+    if args.min_exact is not None:
+        worst = min((a.args / a.n) for a in arms if a.n) if arms else 0
+        return 1 if worst < args.min_exact else 0
+    return 0
 
 
 def cmd_data(args) -> int:
@@ -76,6 +99,19 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("--format", choices=["text", "json"], default="text")
     d.add_argument("--fail-on", choices=["never", "warning", "error"], default="never")
     d.set_defaults(func=cmd_data)
+
+    tl = sub.add_parser("tools", help="evaluate tool calling on your tools and cases, base vs tuned vs quantised, via promptfoo")
+    tl.add_argument("--tools", metavar="JSON", help="OpenAI-style tool list")
+    tl.add_argument("--cases", metavar="FILE", help="cases: {user, calls[, system]} per row (json/jsonl/yaml)")
+    tl.add_argument("--from-dataset", metavar="JSONL", help="hold out cases from your training rows instead")
+    tl.add_argument("--holdout", type=int, default=50)
+    tl.add_argument("--provider", action="append", required=True,
+                    help="repeatable: ollama:MODEL | openai:MODEL@http://host:port/v1 | any promptfoo provider id")
+    tl.add_argument("--keep", metavar="DIR", help="keep the generated promptfoo config and results here")
+    tl.add_argument("--concurrency", type=int, default=1, help="requests in flight (default 1: local servers answer one at a time)")
+    tl.add_argument("--min-exact", type=float, help="exit 1 if any arm's exact-args rate is below this")
+    tl.add_argument("--format", choices=["text", "json"], default="text")
+    tl.set_defaults(func=cmd_tools)
 
     args = ap.parse_args(argv)
     return args.func(args)
