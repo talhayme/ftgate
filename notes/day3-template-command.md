@@ -61,8 +61,9 @@ repos were populated on 2024-09-18 and never regenerated.
 Ollama never renders that Jinja — it uses its Go TEMPLATE — so Ollama
 users do not see this. Anyone who serves the official (or Ollama's) GGUF
 with llama.cpp, vLLM or LM Studio gets a model instructed to emit
-`{{"name": …}}`. On the 40-case set it changed no answers at 0.5B (the
-model ignores the braces in the instruction). Nobody has reported it: the
+`{{"name": …}}` — and the model obeys: it emits `{{…}}`, invalid JSON, in
+every single case (day 4). llama-server's parser forgives it, which is why
+day 2 looked unaffected; a strict parser does not. Nobody has reported it: the
 two "Update metadata (tokenizer.chat_template)" PRs on those repos are
 unrelated (one opened by mistake, one replacing the template with a
 tool-less one). Draft report: `docs/upstream/02-qwen-gguf-template.md`.

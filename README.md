@@ -22,7 +22,11 @@ checked before any tool code was written — the same way
   doubled braces `{{"name": …}}` in the tool-call instruction, fixed on HF
   on 2024-09-19 but never regenerated in the GGUF repos. Ollama's library
   blobs are those files. Ollama never renders it; llama.cpp, vLLM or LM
-  Studio serving the file do.
+  Studio serving the file do. **The 0.5B model copies the braces into
+  every tool call** (invalid JSON; a strict parser gets 0/35 where the HF
+  template gets 22/35); the 1.5B model ignores them. llama-server's parser
+  forgives it, vLLM's `json.loads` would not.
+  → [`notes/day4-doubled-braces-impact.md`](notes/day4-doubled-braces-impact.md)
   → [`notes/day3-template-command.md`](notes/day3-template-command.md)
 - **Ollama prepends the Modelfile SYSTEM** when a request has none — a
   system prompt your training rows may never have had.

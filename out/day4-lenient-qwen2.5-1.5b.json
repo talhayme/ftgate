@@ -1,0 +1,426 @@
+{
+ "embedded-{{": [
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel-mixed"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel-mixed"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel-mixed"
+  }
+ ],
+ "hf-{": [
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "nested"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "array"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 0,
+   "kind": "braces"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "object"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "noargs"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel-mixed"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel-mixed"
+  },
+  {
+   "any": 1,
+   "names": 1,
+   "exact": 1,
+   "kind": "parallel-mixed"
+  }
+ ]
+}

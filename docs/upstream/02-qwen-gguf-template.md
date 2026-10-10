@@ -53,13 +53,30 @@ exactly that line (252 vs 250 tokens). Ollama ships these same files as
 its `qwen2.5` library models (its blobs have the same sha), although Ollama
 itself renders its own Go template and does not hit this.
 
-On a 40-request tool-calling set at 0.5B the doubled braces did not change
-any answer — the model ignores the braces in the instruction — so the
-practical impact looks small. It is still a template that differs from
-training, embedded in the most widely distributed GGUFs for this family,
-and it is a one-line fix: re-embedding the current `chat_template` with
-`gguf-py`'s `gguf-set-metadata` (or regenerating from main) would align
-them.
+Whether it matters depends on the model size and on the runtime's parser.
+Measured on the same blob, temperature 0, with llama-server rendering
+either the embedded template or the current HF one:
+
+- **`qwen2.5:0.5b-instruct` copies the instruction.** Under the embedded
+  template it emits `{{"name": …}}` in 40 of 40 single-tool requests and
+  35 of 35 harder ones (nested arguments, parallel calls): zero strictly
+  valid JSON `<tool_call>` blocks. Under the HF template the same blob
+  emits valid JSON and gets 22/35 of the hard cases exactly right.
+- **`qwen2.5:1.5b-instruct` ignores it** — single braces either way,
+  30/35 exact in both arms.
+- llama-server's tool-call parser tolerates the doubled braces and
+  recovers the 0.5B calls (26/35 exact in both arms through
+  `/v1/chat/completions`). A parser that `json.loads` the block — vLLM's
+  `hermes_tool_parser.py` does, line 92 — gets nothing from the 0.5B
+  output.
+
+So for the smallest model the shipped template turns every tool call
+into invalid JSON, and it works or fails depending on which server is in
+front of it.
+
+A one-line fix on your side: re-embedding the current `chat_template`
+with `gguf-py`'s `gguf-set-metadata` (or regenerating from main) aligns
+the files with what the model was trained on.
 
 Happy to open metadata PRs per repo if that is the preferred route.
 
