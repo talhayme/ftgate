@@ -1,0 +1,14 @@
+{
+  "tools": [
+    {"type": "function", "function": {"name": "get_weather", "description": "Get the current weather for a city.",
+      "parameters": {"type": "object", "properties": {"city": {"type": "string", "description": "City name"},
+      "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}}, "required": ["city"]}}}
+  ],
+  "messages": [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "What's the weather in Tbilisi?"},
+    {"role": "assistant", "content": "", "tool_calls": [{"type": "function", "function": {"name": "get_weather", "arguments": {"city": "Tbilisi", "unit": "celsius"}}}]},
+    {"role": "tool", "content": "{\"temp_c\": 21, \"sky\": \"clear\"}"},
+    {"role": "assistant", "content": "It's 21°C and clear in Tbilisi."}
+  ]
+}
