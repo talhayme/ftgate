@@ -1,4 +1,4 @@
-# Comment on ollama/ollama#14601 — draft, not posted
+# Comment on ollama/ollama#14601 — posted 2026-10-10
 
 **Why a comment, not a new issue:** #14601 (open since 2026-03-03) describes
 exactly this bug for Qwen3, and two open PRs propose fixes: #18318 (value
@@ -64,4 +64,4 @@ of either PR if that helps it along.
 
 Reproduction (cases, the three arms, and the Go renderer that uses Ollama's
 `template` package so the third arm is Ollama's rendering rather than a
-guess): <link to ftgate repo once public>
+guess): https://github.com/talhayme/ftgate
