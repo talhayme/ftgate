@@ -7,3 +7,6 @@ survey/raw/
 survey/adapted/
 .pfrunner/node_modules/
 .pfrunner/package-lock.json
+dist/
+build/
+*.egg-info/

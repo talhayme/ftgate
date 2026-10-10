@@ -1,11 +1,26 @@
 [project]
 name = "ftgate"
-version = "0.0.1"
+version = "0.1.0"
 description = "Regression checks for small fine-tuned models on tool calling: do runtimes send the bytes the model was trained on?"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
+authors = [{ name = "Vitalii Bogachev" }]
+keywords = ["fine-tuning", "tool-calling", "ollama", "llama.cpp", "gguf", "evaluation", "dataset", "lint"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = ["transformers>=4.45", "requests>=2.31"]
+
+[project.urls]
+Homepage = "https://github.com/talhayme/ftgate"
+Repository = "https://github.com/talhayme/ftgate"
+Issues = "https://github.com/talhayme/ftgate/issues"
 
 [project.optional-dependencies]
 dev = ["pytest"]
