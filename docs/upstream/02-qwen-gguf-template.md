@@ -1,4 +1,12 @@
-# To Qwen — HF discussion on `Qwen/Qwen2.5-0.5B-Instruct-GGUF` — draft, not posted
+# To Qwen — filed as [QwenLM/Qwen3#1921](https://github.com/QwenLM/Qwen3/issues/1921) on 2026-10-10
+
+**Status:** posted on GitHub from `talhayme`. The intended venue was a
+discussion on `Qwen/Qwen2.5-0.5B-Instruct-GGUF`; Hugging Face refused with
+"rate limit for discussion creation (0 per hour)" for a new account. To be
+duplicated there when the quota opens. The GitHub repo has
+`blank_issues_enabled: false` with a bug-report form; the issue was filed
+through the API in free form — if a bot closes it for that reason, re-file
+through the form.
 
 **Why there and not Ollama:** Ollama's library blobs for `qwen2.5` are
 Qwen's official GGUFs byte-for-byte (same `tokenizer.chat_template` sha
