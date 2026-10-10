@@ -11,6 +11,11 @@ from functools import lru_cache
 
 from transformers import AutoTokenizer
 
+try:  # transformers renders chat templates with jinja2 but does not depend on it
+    import jinja2  # noqa: F401
+except ImportError as _e:  # pragma: no cover
+    raise ImportError("ftgate needs jinja2 to render chat templates: pip install jinja2") from _e
+
 
 @dataclass
 class Rendering:

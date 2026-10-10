@@ -1,6 +1,6 @@
 [project]
 name = "ftgate"
-version = "0.1.0"
+version = "0.1.1"
 description = "Regression checks for small fine-tuned models on tool calling: do runtimes send the bytes the model was trained on?"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -15,7 +15,8 @@ classifiers = [
   "Topic :: Software Development :: Testing",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
-dependencies = ["transformers>=4.45", "requests>=2.31"]
+# jinja2: transformers needs it to render chat templates and does not pull it in itself.
+dependencies = ["transformers>=4.45", "jinja2>=3.1", "requests>=2.31"]
 
 [project.urls]
 Homepage = "https://github.com/talhayme/ftgate"
