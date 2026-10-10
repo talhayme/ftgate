@@ -31,7 +31,7 @@ ok system-prompt           ollama           30 vs 30   identical
 Every Ollama cross-check matches the live `prompt_eval_count` (34, 30,
 222, 231), so the Ollama column is Ollama's bytes, not an approximation.
 
-## Finding 3: Ollama's GGUF blobs embed a template with doubled braces
+## Finding 3: the official Qwen2.5 GGUFs embed the pre-fix chat template
 
 The two `[structural]` rows on **llama-server** were a surprise — day 1
 had llama-server byte-identical. The difference: day 1 used my own f16
@@ -43,24 +43,29 @@ library blob**. The diff is one line of the tool-call instruction:
 +{{"name": <function-name>, "arguments": <args-json-object>}}
 ```
 
-Read straight out of the files with `gguf.GGUFReader`:
+First suspicion was Ollama's conversion. Wrong. Ollama's blobs are
+**Qwen's official GGUFs**, byte-for-byte on the template (same sha), and
+the history explains it: the HF repo shipped with doubled braces on
+2024-09-16 and fixed them in commit `a8b602d9` on 2024-09-19; the GGUF
+repos were populated on 2024-09-18 and never regenerated.
 
 | file | chat_template sha | instruction line |
 |---|---|---|
-| HF Qwen2.5-0.5B-Instruct `tokenizer_config.json` | `cd8e9439f0` | `{"name": …}` |
-| HF Qwen2.5-1.5B-Instruct | `cd8e9439f0` | `{"name": …}` |
-| my `convert_hf_to_gguf.py` output | `cd8e9439f0` | `{"name": …}` |
-| **Ollama blob `qwen2.5:0.5b-instruct`** | **`d5495a1e5d`** | **`{{"name": …}}`** |
-| **Ollama blob `qwen2.5:1.5b-instruct`** | **`d5495a1e5d`** | **`{{"name": …}}`** |
+| HF Qwen2.5-0.5B-Instruct, main (and every revision from 2024-09-19) | `cd8e9439f0` | `{"name": …}` |
+| HF revisions 2024-09-16 … 09-18 | — | `{{"name": …}}` |
+| my `convert_hf_to_gguf.py` output of main | `cd8e9439f0` | `{"name": …}` |
+| **official `Qwen2.5-0.5B-Instruct-GGUF`** | **`d5495a1e5d`** | **`{{"name": …}}`** |
+| **official `Qwen2.5-1.5B-Instruct-GGUF`** | **`d5495a1e5d`** | **`{{"name": …}}`** |
+| Ollama blobs `qwen2.5:0.5b` / `:1.5b` | `d5495a1e5d` | identical to the official files |
 
-Ollama itself never renders that Jinja — it uses its Go TEMPLATE — so
-Ollama users do not see this. Anyone who pulls Ollama's blob and serves it
-with llama.cpp, vLLM or anything that honours the embedded template gets a
-model instructed to emit `{{"name": …}}`. On the 40-case set it changed no
-answers at 0.5B (the model ignores the instruction's braces), but it is a
-template that differs from training, embedded in the most widely
-distributed GGUFs for this family. Where the doubling comes from is not
-established; the likely place is Ollama's own HF→GGUF conversion.
+Ollama never renders that Jinja — it uses its Go TEMPLATE — so Ollama
+users do not see this. Anyone who serves the official (or Ollama's) GGUF
+with llama.cpp, vLLM or LM Studio gets a model instructed to emit
+`{{"name": …}}`. On the 40-case set it changed no answers at 0.5B (the
+model ignores the braces in the instruction). Nobody has reported it: the
+two "Update metadata (tokenizer.chat_template)" PRs on those repos are
+unrelated (one opened by mistake, one replacing the template with a
+tool-less one). Draft report: `docs/upstream/02-qwen-gguf-template.md`.
 
 ## Finding 4: Ollama injects the Modelfile SYSTEM
 
@@ -80,8 +85,8 @@ tokens of context on every request.
 
 - Four classes of training/runtime mismatch found on one model family in
   three days, none of them visible without diffing the bytes: a Go struct
-  dump for the schema (Ollama), a doubled-brace instruction (Ollama's
-  GGUFs under other runtimes), an injected system prompt (Ollama),
+  dump for the schema (Ollama), a doubled-brace instruction (Qwen's official
+  GGUFs, under runtimes that honour the embedded template), an injected system prompt (Ollama),
   compact-vs-spaced JSON (Ollama, `drift`).
 - 9 unit tests on the comparison, no network. Live adapters are exercised
   by hand against both servers; a recorded-fixture test for them is next.

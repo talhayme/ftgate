@@ -18,9 +18,11 @@ checked before any tool code was written — the same way
   schema**: `{get_weather … {object <nil> <nil> [city] {…}}}`. Root cause
   in `template/template.go` (`templateToolFunction` has no `String()`);
   known upstream as ollama/ollama#14601 with open PRs #18318 and #18391.
-- **Ollama's own GGUF blobs embed a chat template with doubled braces**
-  (`{{"name": …}}` where HF and a fresh conversion have `{"name": …}`).
-  Ollama never renders it, but llama.cpp or vLLM serving that blob do.
+- **Qwen's official Qwen2.5 GGUFs embed the pre-fix chat template** —
+  doubled braces `{{"name": …}}` in the tool-call instruction, fixed on HF
+  on 2024-09-19 but never regenerated in the GGUF repos. Ollama's library
+  blobs are those files. Ollama never renders it; llama.cpp, vLLM or LM
+  Studio serving the file do.
   → [`notes/day3-template-command.md`](notes/day3-template-command.md)
 - **Ollama prepends the Modelfile SYSTEM** when a request has none — a
   system prompt your training rows may never have had.
