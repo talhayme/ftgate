@@ -4,7 +4,7 @@ Regression checks for a small model you fine-tuned on tool calling: do the
 bytes the runtime sends match the bytes the model was trained on, and does
 it still call your tools correctly after export and quantisation?
 
-**Status: day 3 — `ftgate template` works; `ftgate data` is next.** The premise was
+**Status: day 5 — `ftgate template` and `ftgate data` work.** The premise was
 checked before any tool code was written — the same way
 [pr-witness](https://github.com/talhayme/pr-witness) was built.
 
@@ -54,6 +54,24 @@ model, and every difference is classified: `schema_not_json`,
 `injected_system`, `special_prefix`, `structural`, `spacing`, `tokenizer`.
 Ollama's column is rendered with Ollama's own `template` package (build
 `bin/` once) and cross-checked against the live `prompt_eval_count`.
+
+### `ftgate data` — lint the dataset with the model's own tokenizer and template
+
+```
+ftgate data train.jsonl --model Qwen/Qwen2.5-0.5B-Instruct --max-seq-len 2048 \
+            --eval eval.jsonl --fail-on error
+```
+
+Rows in `messages`, ShareGPT, Alpaca or preference (`chosen`/`rejected`)
+shape. Reports what the trainer will silently do to each row: an assistant
+turn that renders to zero target tokens, a conversation cut by
+`max_seq_len` before the answer (trains nothing) or inside it, a row that
+never ends with EOS, a template that raises on the row. Structural checks:
+empty or missing assistant target, role order, tool calls against the
+declared schema (missing required / unknown arguments / undeclared tool /
+`tool_call_id` with no call), `chosen == rejected`, length bias in
+preference pairs, exact duplicates, near-duplicates of the eval set.
+`--format json` for CI; `--fail-on error|warning` sets the exit code.
 
 ## Reproduce the findings
 

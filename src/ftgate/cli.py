@@ -10,6 +10,19 @@ from ftgate.compare import compare
 from ftgate.conversations import BUILTIN, load_dataset
 from ftgate.runtimes import llama as llama_rt
 from ftgate.runtimes import ollama as ollama_rt
+from ftgate import data as data_mod
+import json as _json
+
+
+def cmd_data(args) -> int:
+    rep = data_mod.lint(Path(args.path), model=args.model, max_seq_len=args.max_seq_len,
+                        eval_path=Path(args.eval) if args.eval else None, limit=args.limit)
+    print(_json.dumps(rep.as_dict(), indent=2, ensure_ascii=False) if args.format == "json" else data_mod.to_text(rep), end="")
+    if args.fail_on == "error":
+        return 1 if rep.count("error") else 0
+    if args.fail_on == "warning":
+        return 1 if rep.count("error") or rep.count("warning") else 0
+    return 0
 
 
 def cmd_template(args) -> int:
@@ -53,6 +66,16 @@ def main(argv: list[str] | None = None) -> int:
     t.add_argument("--format", choices=["text", "json"], default="text")
     t.add_argument("--fail-on", choices=["never", "drift", "mismatch"], default="never")
     t.set_defaults(func=cmd_template)
+
+    d = sub.add_parser("data", help="lint a fine-tuning dataset with the target model's tokenizer and template")
+    d.add_argument("path", help="JSONL: messages / ShareGPT / Alpaca / preference rows")
+    d.add_argument("--model", help="HF model id; enables tokenizer and template checks")
+    d.add_argument("--max-seq-len", type=int, help="the trainer's cutoff; rows beyond it are reported")
+    d.add_argument("--eval", metavar="JSONL", help="eval set to check for leakage (near-duplicates)")
+    d.add_argument("--limit", type=int)
+    d.add_argument("--format", choices=["text", "json"], default="text")
+    d.add_argument("--fail-on", choices=["never", "warning", "error"], default="never")
+    d.set_defaults(func=cmd_data)
 
     args = ap.parse_args(argv)
     return args.func(args)
