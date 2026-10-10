@@ -1,0 +1,218 @@
+{
+ "model": "Qwen/Qwen2.5-0.5B-Instruct",
+ "results": {
+  "NousResearch__hermes-function-calling-v1": {
+   "sampled": 1115,
+   "raw_dups_removed": 385,
+   "adapter_failed": 0,
+   "linted": 1115,
+   "rows_with_tool_calls": 717,
+   "tokens": {
+    "min": 456,
+    "p50": 1838,
+    "p95": 3396,
+    "max": 3964
+   },
+   "over": {
+    "2048": 499,
+    "4096": 0
+   },
+   "truncated_before_target": {
+    "2048": 424,
+    "4096": 0
+   },
+   "rows_with_code": {
+    "tool_args_not_json": 0,
+    "undeclared_tool": 0,
+    "tool_args_missing_required": 0,
+    "tool_args_unknown_key": 0,
+    "tool_call_id_mismatch": 0,
+    "tool_without_call": 5,
+    "empty_assistant": 0,
+    "no_assistant_target": 108,
+    "role_repeat": 0,
+    "duplicate_row": 0,
+    "template_error": 0,
+    "zero_target_tokens": 0,
+    "no_eos": 0
+   },
+   "errors": 537,
+   "warnings": 75,
+   "examples": {
+    "tool_without_call": "message 2: tool message with no preceding tool_calls",
+    "no_assistant_target": "last message is 'tool'; SFT has nothing to train on"
+   }
+  },
+  "glaiveai__glaive-function-calling-v2": {
+   "sampled": 1492,
+   "raw_dups_removed": 8,
+   "adapter_failed": 0,
+   "linted": 1492,
+   "rows_with_tool_calls": 811,
+   "tokens": {
+    "min": 104,
+    "p50": 404,
+    "p95": 1210,
+    "max": 3537
+   },
+   "over": {
+    "2048": 3,
+    "4096": 0
+   },
+   "truncated_before_target": {
+    "2048": 2,
+    "4096": 0
+   },
+   "rows_with_code": {
+    "tool_args_not_json": 1,
+    "undeclared_tool": 0,
+    "tool_args_missing_required": 3,
+    "tool_args_unknown_key": 0,
+    "tool_call_id_mismatch": 0,
+    "tool_without_call": 1,
+    "empty_assistant": 0,
+    "no_assistant_target": 21,
+    "role_repeat": 0,
+    "duplicate_row": 0,
+    "template_error": 0,
+    "zero_target_tokens": 0,
+    "no_eos": 0
+   },
+   "errors": 28,
+   "warnings": 1,
+   "examples": {
+    "tool_args_not_json": "message 4: arguments of 'analyze_sentiment' are not JSON",
+    "tool_args_missing_required": "message 2: 'search_movies' missing required 'title'",
+    "tool_without_call": "message 3: tool message with no preceding tool_calls",
+    "no_assistant_target": "last message is 'tool'; SFT has nothing to train on"
+   }
+  },
+  "lockon__xlam-function-calling-60k": {
+   "sampled": 1500,
+   "raw_dups_removed": 0,
+   "adapter_failed": 0,
+   "linted": 1500,
+   "rows_with_tool_calls": 1500,
+   "tokens": {
+    "min": 203,
+    "p50": 496,
+    "p95": 966,
+    "max": 1984
+   },
+   "over": {
+    "2048": 0,
+    "4096": 0
+   },
+   "truncated_before_target": {
+    "2048": 0,
+    "4096": 0
+   },
+   "rows_with_code": {
+    "tool_args_not_json": 0,
+    "undeclared_tool": 0,
+    "tool_args_missing_required": 23,
+    "tool_args_unknown_key": 1,
+    "tool_call_id_mismatch": 0,
+    "tool_without_call": 0,
+    "empty_assistant": 0,
+    "no_assistant_target": 0,
+    "role_repeat": 0,
+    "duplicate_row": 5,
+    "template_error": 0,
+    "zero_target_tokens": 0,
+    "no_eos": 0
+   },
+   "errors": 25,
+   "warnings": 10,
+   "examples": {
+    "tool_args_missing_required": "message 1: 'calculate_electric_field' missing required 'permitivity'",
+    "tool_args_unknown_key": "message 1: 'search' has unknown argument 'pageno'",
+    "duplicate_row": "exact duplicate of row 154"
+   }
+  },
+  "argilla__apigen-function-calling": {
+   "sampled": 1500,
+   "raw_dups_removed": 0,
+   "adapter_failed": 0,
+   "linted": 1500,
+   "rows_with_tool_calls": 1500,
+   "tokens": {
+    "min": 206,
+    "p50": 482,
+    "p95": 910,
+    "max": 2228
+   },
+   "over": {
+    "2048": 1,
+    "4096": 0
+   },
+   "truncated_before_target": {
+    "2048": 0,
+    "4096": 0
+   },
+   "rows_with_code": {
+    "tool_args_not_json": 0,
+    "undeclared_tool": 0,
+    "tool_args_missing_required": 20,
+    "tool_args_unknown_key": 0,
+    "tool_call_id_mismatch": 0,
+    "tool_without_call": 0,
+    "empty_assistant": 0,
+    "no_assistant_target": 0,
+    "role_repeat": 0,
+    "duplicate_row": 0,
+    "template_error": 0,
+    "zero_target_tokens": 0,
+    "no_eos": 0
+   },
+   "errors": 21,
+   "warnings": 1,
+   "examples": {
+    "tool_args_missing_required": "message 1: 'trapezoidal_integration' missing required 'n'"
+   }
+  },
+  "hiyouga__glaive-function-calling-v2-sharegpt": {
+   "sampled": 1483,
+   "raw_dups_removed": 17,
+   "adapter_failed": 0,
+   "linted": 1483,
+   "rows_with_tool_calls": 776,
+   "tokens": {
+    "min": 212,
+    "p50": 472,
+    "p95": 1225,
+    "max": 2412
+   },
+   "over": {
+    "2048": 1,
+    "4096": 0
+   },
+   "truncated_before_target": {
+    "2048": 1,
+    "4096": 0
+   },
+   "rows_with_code": {
+    "tool_args_not_json": 0,
+    "undeclared_tool": 0,
+    "tool_args_missing_required": 1,
+    "tool_args_unknown_key": 0,
+    "tool_call_id_mismatch": 0,
+    "tool_without_call": 3,
+    "empty_assistant": 0,
+    "no_assistant_target": 0,
+    "role_repeat": 0,
+    "duplicate_row": 47,
+    "template_error": 0,
+    "zero_target_tokens": 0,
+    "no_eos": 0
+   },
+   "errors": 5,
+   "warnings": 47,
+   "examples": {
+    "tool_args_missing_required": "message 1: 'search_books' missing required 'author'",
+    "tool_without_call": "message 2: tool message with no preceding tool_calls",
+    "duplicate_row": "exact duplicate of row 36"
+   }
+  }
+ }
+}

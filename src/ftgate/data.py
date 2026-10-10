@@ -168,8 +168,11 @@ def check_preference(n: int, row: dict, issues: list[Issue], ratios: list[float]
 # ------------------------------------------------------- tokenizer checks
 
 def check_with_model(n: int, msgs: list[dict], tools: list[dict], tok, max_seq_len: int | None,
-                     issues: list[Issue], lengths: list[int]) -> None:
-    kwargs = {"tools": tools} if tools else {}
+                     issues: list[Issue], lengths: list[int], tools_in_prompt: bool = False) -> None:
+    # Some datasets write the tool signatures into the system message
+    # themselves. Passing them to the template as well would render them
+    # twice and double the measured length, so such rows say so.
+    kwargs = {"tools": tools} if tools and not tools_in_prompt else {}
     try:
         full = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=False, **kwargs)
     except Exception as exc:  # noqa: BLE001 — the template raising is the finding
@@ -263,7 +266,7 @@ def lint(path: Path, model: str | None = None, max_seq_len: int | None = None,
         if rf == "preference":
             check_preference(n, row, issues, ratios)
         if tok is not None:
-            check_with_model(n, msgs, tools, tok, max_seq_len, issues, lengths)
+            check_with_model(n, msgs, tools, tok, max_seq_len, issues, lengths, bool(row.get("tools_in_prompt")))
         texts.append(json.dumps(msgs, sort_keys=True, ensure_ascii=False))
 
     eval_text = None

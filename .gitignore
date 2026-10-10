@@ -3,3 +3,5 @@ __pycache__/
 *.gguf
 .DS_Store
 bin/ollama-render
+survey/raw/
+survey/adapted/
