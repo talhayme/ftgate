@@ -1,0 +1,1553 @@
+{
+ "model": "qwen2.5:1.5b-instruct",
+ "n": 40,
+ "results": {
+  "ollama": [
+   {
+    "case": 0,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tbilisi",
+      "unit": "celsius"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 1,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Berlin"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 2,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tokyo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 3,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Lima"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 4,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Oslo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 5,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Cairo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 6,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Toronto"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 7,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Madrid",
+      "unit": "celsius"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 8,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 100,
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 9,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 250,
+      "from_currency": "EUR",
+      "to_currency": "GBP"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 10,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 5000,
+      "from_currency": "JPY",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 11,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 80,
+      "from_currency": "GBP",
+      "to_currency": "CHF"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 12,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 1200,
+      "from_currency": "CAD",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 13,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 300,
+      "from_currency": "AUD",
+      "to_currency": "NZD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 14,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 45,
+      "from_currency": "USD",
+      "to_currency": "JPY"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 15,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "from_currency": "CHF",
+      "to_currency": "EUR",
+      "amount": 999
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 16,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 5
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 17,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 10
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 18,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 25
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 19,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 45
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 20,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 90
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 21,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 3
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 22,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 15
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 23,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 60
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 24,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Anna Petrova"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 25,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "John Smith"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 26,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Li Wei"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 27,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Maria Garcia"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 28,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Omar Haddad"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 29,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Sofia Rossi"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 30,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Kenji Sato"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 31,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Emma Brown"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 32,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "alice@example.com",
+      "subject": "Lunch tomorrow"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 33,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "bob@corp.io",
+      "subject": "Q3 report"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 34,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "team@startup.dev",
+      "subject": "Standup moved",
+      "body": "The standup meeting has been moved to tomorrow due to unforeseen circumstances."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 35,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "dr.lee@clinic.org",
+      "subject": "Appointment"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 36,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "sam@example.com",
+      "subject": "Tickets"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 37,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "hr@company.com",
+      "subject": "Vacation request"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 38,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "nina@mail.net",
+      "subject": "Photos"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 39,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "ops@service.io",
+      "subject": "Outage",
+      "body": "There is an outage in the system."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   }
+  ],
+  "llama-correct": [
+   {
+    "case": 0,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tbilisi"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 1,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Berlin"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 2,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tokyo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 3,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Lima"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 4,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Oslo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 5,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Cairo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 6,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Toronto"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 7,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Madrid"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 8,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 100,
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 9,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 250,
+      "from_currency": "EUR",
+      "to_currency": "GBP"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 10,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 5000,
+      "from_currency": "JPY",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 11,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 80,
+      "from_currency": "GBP",
+      "to_currency": "CHF"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 12,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 1200,
+      "from_currency": "CAD",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 13,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 300,
+      "from_currency": "AUD",
+      "to_currency": "NZD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 14,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 45,
+      "from_currency": "USD",
+      "to_currency": "JPY"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 15,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 999,
+      "from_currency": "CHF",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 16,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 5
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 17,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 10
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 18,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 25
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 19,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 45
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 20,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 90
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 21,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 3
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 22,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 15
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 23,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 60
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 24,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Anna Petrova"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 25,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "John Smith"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 26,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Li Wei"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 27,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Maria Garcia"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 28,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Omar Haddad"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 29,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Sofia Rossi"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 30,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Kenji Sato"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 31,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Emma Brown"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 32,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "alice@example.com",
+      "subject": "Lunch tomorrow"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 33,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "bob@corp.io",
+      "subject": "Q3 report"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 34,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "team@startup.dev",
+      "subject": "Standup moved",
+      "body": ""
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 35,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "dr.lee@clinic.org",
+      "subject": "Appointment"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 36,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "sam@example.com",
+      "subject": "Tickets"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 37,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "hr@company.com",
+      "subject": "Vacation request"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 38,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "nina@mail.net",
+      "subject": "Photos"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 39,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "ops@service.io",
+      "subject": "Outage"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   }
+  ],
+  "llama-garbled": [
+   {
+    "case": 0,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tbilisi",
+      "unit": "celsius"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 1,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Berlin"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 2,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tokyo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 3,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Lima"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 4,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Oslo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 5,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Cairo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 6,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Toronto"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 7,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Madrid",
+      "unit": "celsius"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 8,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 100,
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 9,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 250,
+      "from_currency": "EUR",
+      "to_currency": "GBP"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 10,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 5000,
+      "from_currency": "JPY",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 11,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 80,
+      "from_currency": "GBP",
+      "to_currency": "CHF"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 12,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 1200,
+      "from_currency": "CAD",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 13,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 300,
+      "from_currency": "AUD",
+      "to_currency": "NZD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 14,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 45,
+      "from_currency": "USD",
+      "to_currency": "JPY"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 15,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 999,
+      "from_currency": "CHF",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 16,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 5
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 17,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 10
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 18,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 25
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 19,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 45
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 20,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 90
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 21,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 3
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 22,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 15
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 23,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 60
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 24,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Anna Petrova"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 25,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "John Smith"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 26,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Li Wei"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 27,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Maria Garcia"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 28,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Omar Haddad"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 29,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Sofia Rossi"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 30,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Kenji Sato"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 31,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Emma Brown"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 32,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "alice@example.com",
+      "subject": "Lunch tomorrow"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 33,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "bob@corp.io",
+      "subject": "Q3 report"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 34,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "team@startup.dev",
+      "subject": "Standup moved",
+      "body": "The standup meeting has been moved to tomorrow due to unforeseen circumstances."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 35,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "dr.lee@clinic.org",
+      "subject": "Appointment"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 36,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "sam@example.com",
+      "subject": "Tickets"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 37,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "hr@company.com",
+      "subject": "Vacation request"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 38,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "nina@mail.net",
+      "subject": "Photos"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 39,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "ops@service.io",
+      "subject": "Outage",
+      "body": "There is an outage in the system."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   }
+  ]
+ },
+ "summary": [
+  [
+   "ollama",
+   40,
+   40,
+   40
+  ],
+  [
+   "llama-correct",
+   40,
+   40,
+   40
+  ],
+  [
+   "llama-garbled",
+   40,
+   40,
+   40
+  ]
+ ]
+}

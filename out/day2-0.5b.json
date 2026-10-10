@@ -1,0 +1,1578 @@
+{
+ "model": "qwen2.5:0.5b-instruct",
+ "n": 40,
+ "results": {
+  "ollama": [
+   {
+    "case": 0,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tbilisi",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 1,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Berlin, Germany",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 2,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tokyo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 3,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Lima"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 4,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Oslo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 5,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Cairo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 6,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Toronto",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 7,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Madrid"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 8,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "USD",
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 9,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "EUR",
+      "to_currency": "GBP"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 10,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "JPY",
+      "from_currency": "USD",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 11,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "to_currency": "CHF",
+      "amount from_currency": "GBP",
+      "from_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 12,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "CAD",
+      "from_currency": "USD",
+      "to_currency": "CAD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 13,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "AUD",
+      "from_currency": "USD",
+      "to_currency": "NZD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 14,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "to_currency": "JPY",
+      "amount from_currency": "USD",
+      "from_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 15,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "CHF",
+      "from_currency": "CHF",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 16,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 5
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 17,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 10
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 18,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 25
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 19,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 45
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 20,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 90
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 21,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 3
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 22,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 15
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 23,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 60
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 24,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Anna Petrova"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 25,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "John Smith"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 26,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Li Wei"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 27,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Maria Garcia"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 28,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Omar Haddad"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 29,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Sofia Rossi"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 30,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Kenji Sato"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 31,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Emma Brown"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 32,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "alice@example.com",
+      "subject": "Lunch tomorrow",
+      "body": "Dear Alice, I hope you have a great day ahead. We are planning to have lunch tomorrow. Please let me know if you need anything. Best, [Your Name]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 33,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "bob@corp.io",
+      "subject": "Q3 report",
+      "body": "This is a test email."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 34,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "body": "Hi, team, we're excited to announce that our standup meeting has moved to the next day. We hope you all have a great day!",
+      "to": "team@startup.dev",
+      "subject": "Standup moved"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 35,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "dr.lee@clinic.org",
+      "subject": "Appointment",
+      "body": "Dear Dr. Lee, I hope this message finds you well. I am writing to confirm the appointment for your consultation. Please let me know if you have any questions or need further information. Best regards, [Your Name]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 36,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "sam@example.com",
+      "subject": "Tickets",
+      "body": "Dear user, we have some tickets available. Please check the details below."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 37,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "subject": "Vacation request",
+      "body": "Dear HR, I am applying for a vacation. I am available for the next 10 days.",
+      "to": "hr@company.com"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 38,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "nina@mail.net",
+      "subject": "Photos",
+      "body": "Here is the photos: [insert photos here]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 39,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "ops@service.io",
+      "subject": "Outage",
+      "body": "Dear service.io team, I hope this message finds you well. We are experiencing some issues with our services. We apologize for any inconvenience this may cause. Please let us know if you need any assistance."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   }
+  ],
+  "llama-correct": [
+   {
+    "case": 0,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tbilisi",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 1,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Berlin, Germany",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 2,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tokyo",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 3,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Lima",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 4,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Oslo",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 5,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Cairo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 6,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Toronto",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 7,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Madrid"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 8,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 100,
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 9,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 250,
+      "from_currency": "EUR",
+      "to_currency": "GBP"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 10,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 5000,
+      "from_currency": "JPY",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 11,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 80,
+      "from_currency": "GBP",
+      "to_currency": "CHF"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 12,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 1200,
+      "from_currency": "CAD",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 13,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 300,
+      "from_currency": "AUD",
+      "to_currency": "NZD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 14,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 45,
+      "from_currency": "USD",
+      "to_currency": "JPY"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 15,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount": 999,
+      "from_currency": "CHF",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 16,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 5
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 17,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 10
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 18,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 25
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 19,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 45
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 20,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 90
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 21,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 3
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 22,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 15
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 23,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 60
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 24,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Anna Petrova"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 25,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "John Smith"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 26,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Li Wei"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 27,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Maria Garcia"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 28,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Omar Haddad"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 29,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Sofia Rossi"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 30,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Kenji Sato"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 31,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Emma Brown"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 32,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "alice@example.com",
+      "subject": "Lunch tomorrow",
+      "body": "Hi, I'm planning to have lunch tomorrow. Do you want to come?"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 33,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "bob@corp.io",
+      "subject": "Q3 report",
+      "body": "This is a test email."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 34,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "team@startup.dev",
+      "subject": "Standup moved",
+      "body": "Hi, team, we're excited to announce that our standup meeting has moved to the next day. We hope you all have a great day!"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 35,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "dr.lee@clinic.org",
+      "subject": "Appointment",
+      "body": "Dear Dr. Lee, I hope this message finds you well. I am writing to confirm the appointment for your consultation. Please let me know if you have any questions or need further information. Best regards, [Your Name]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 36,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "sam@example.com",
+      "subject": "Tickets",
+      "body": "Dear user, we have some tickets available. Please check the details below."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 37,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "hr@company.com",
+      "subject": "Vacation request",
+      "body": "Dear HR, I am applying for a vacation. I am currently on a business trip and would like to request a few days off. Please let me know if you are interested."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 38,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "nina@mail.net",
+      "subject": "Photos",
+      "body": "Here is the photos: [insert photos here]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 39,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "ops@service.io",
+      "subject": "Outage",
+      "body": "Dear service.io team, We are experiencing an outage. We apologize for any inconvenience this may cause. Please contact us if you need any assistance."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   }
+  ],
+  "llama-garbled": [
+   {
+    "case": 0,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tbilisi",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 1,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Berlin, Germany",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 2,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Tokyo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 3,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Lima"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 4,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Oslo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 5,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Cairo"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 6,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Toronto",
+      "unit": "fahrenheit"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 7,
+    "got": {
+     "name": "get_weather",
+     "arguments": {
+      "city": "Madrid"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 8,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "USD",
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 9,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "EUR",
+      "to_currency": "GBP"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 10,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "JPY",
+      "from_currency": "USD",
+      "to_currency": "USD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 11,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "GBP",
+      "from_currency": "USD",
+      "to_currency": "CHF"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 12,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "CAD",
+      "from_currency": "USD",
+      "to_currency": "CAD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 13,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "AUD",
+      "from_currency": "USD",
+      "to_currency": "NZD"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 14,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "USD",
+      "from_currency": "USD",
+      "to_currency": "JPY"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 15,
+    "got": {
+     "name": "convert_currency",
+     "arguments": {
+      "amount from_currency": "CHF",
+      "from_currency": "CHF",
+      "to_currency": "EUR"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 0
+   },
+   {
+    "case": 16,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 5
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 17,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 10
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 18,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 25
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 19,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 45
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 20,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 90
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 21,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 3
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 22,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 15
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 23,
+    "got": {
+     "name": "set_timer",
+     "arguments": {
+      "minutes": 60
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 24,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Anna Petrova"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 25,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "John Smith"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 26,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Li Wei"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 27,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Maria Garcia"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 28,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Omar Haddad"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 29,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Sofia Rossi"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 30,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Kenji Sato"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 31,
+    "got": {
+     "name": "search_contacts",
+     "arguments": {
+      "name": "Emma Brown"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 32,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "alice@example.com",
+      "subject": "Lunch tomorrow",
+      "body": "Dear Alice, I hope you have a great day ahead. We are planning to have lunch tomorrow. Please let me know if you need anything. Best, [Your Name]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 33,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "bob@corp.io",
+      "subject": "Q3 report",
+      "body": "This is a test email."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 34,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "team@startup.dev",
+      "subject": "Standup moved",
+      "body": "Hi, team, we're excited to announce that our standup meeting has moved to the next day. We hope you all have a great day!"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 35,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "dr.lee@clinic.org",
+      "subject": "Appointment",
+      "body": "Dear Dr. Lee, I hope this message finds you well. I am writing to confirm the appointment for your consultation. Please let me know if you have any questions or need further information. Best regards, [Your Name]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 36,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "sam@example.com",
+      "subject": "Tickets",
+      "body": "Dear user, we have some tickets available. Please check the details below."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 37,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "hr@company.com",
+      "subject": "Vacation request",
+      "body": "Dear HR, I am applying for a vacation. I am available for the next 10 days."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 38,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "nina@mail.net",
+      "subject": "Photos",
+      "body": "Here is the photos: [insert photos here]"
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   },
+   {
+    "case": 39,
+    "got": {
+     "name": "send_email",
+     "arguments": {
+      "to": "ops@service.io",
+      "subject": "Outage",
+      "body": "Dear service.io team, I hope this message finds you well. We are experiencing some issues with our services. We apologize for any inconvenience this may cause. Please let us know if you need any assistance."
+     }
+    },
+    "called": 1,
+    "tool": 1,
+    "args": 1
+   }
+  ]
+ },
+ "summary": [
+  [
+   "ollama",
+   40,
+   40,
+   31
+  ],
+  [
+   "llama-correct",
+   40,
+   40,
+   39
+  ],
+  [
+   "llama-garbled",
+   40,
+   40,
+   31
+  ]
+ ]
+}
