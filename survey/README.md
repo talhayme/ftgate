@@ -23,8 +23,9 @@ findings do not.
   lossy — glaive's tool-call arguments as a single-quoted string, xLAM's
   "no `default` means required" convention — the adapter keeps the quirk
   so the linter can see it. Datasets that write the tool signatures into
-  their own system prompt (hermes, glaive, Dolci) are flagged
-  `tools_in_prompt` so the template does not render them a second time.
+  their own system prompt (hermes, glaive) are flagged `tools_in_prompt`
+  so the template does not render them a second time; Dolci keeps its
+  signatures in a separate field, so for it the template renders them.
 - **Lint.** `ftgate data` with `--model Qwen/Qwen2.5-0.5B-Instruct` at
   `--max-seq-len` 2048 and 4096. Every figure is a share of linted rows.
 
@@ -42,7 +43,7 @@ runner). Headline numbers, Qwen2.5 template:
 | lockon/xlam-function-calling-60k | 1,500 | 496 | 0.0% | 0.0% | 1.5% missing required | 0.0% |
 | argilla/apigen-function-calling | 1,500 | 482 | 0.1% | 0.0% | 1.3% missing required | 0.0% |
 | hiyouga/glaive-function-calling-v2-sharegpt | 1,483 | 472 | 0.1% | 0.1% | 0.1% | 0.0% (3.2% duplicate rows) |
-| allenai/Dolci-Instruct-SFT-Tool-Use | — | — | — | — | — | — |
+| allenai/Dolci-Instruct-SFT-Tool-Use | 1,500 | 1,194 | 16.9% | **14.9%** | 3.8% unparseable calls | 0.1% |
 
 ## What the numbers mean, dataset by dataset
 
@@ -82,7 +83,24 @@ the single-quote quirk is gone. 3.2% of rows are exact duplicates after
 raw de-duplication — the conversion drops the system prompt, so rows that
 differed only there collapse into one.
 
-**Dolci-Instruct-SFT-Tool-Use.** *(pending — sample in progress.)*
+**Dolci-Instruct-SFT-Tool-Use** (AllenAI). Structured fields rather than
+text: tool signatures in a `functions` field on the system message, calls
+in a `function_calls` field as Python expressions (`get_user_feed(is_id=25081362)`,
+dotted names like `instagram.get_user_feed`), results under an
+`environment` role. Two findings. First, length: median 1,194 tokens but
+p95 8,897 and a maximum of **334,792** — one `environment` turn is a
+1.2 MB API dump (a Semantic Scholar response). 16.9% of
+rows exceed 2,048 and **14.9%** are cut
+before the final assistant turn; at 4,096 it is still 6.7%.
+Second, 3.8% of rows contain a
+call that is not a valid Python expression. Of 155 such lines in the
+sample: 65 mix JSON into Python (`stableonly=true`), 52 have tool names
+with spaces (`Historical Engagement Stats(...)`), 7 have hyphens
+(`list-forms()`), 31 are a bare `null` where a call should be. The format
+is declared as Python calls, and the rows teach the model two notations
+at once.
+Calls that do parse match the declared tools almost perfectly (one
+undeclared name in 1,500 rows).
 
 ## Caveats
 

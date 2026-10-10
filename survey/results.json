@@ -213,6 +213,53 @@
     "tool_without_call": "message 2: tool message with no preceding tool_calls",
     "duplicate_row": "exact duplicate of row 36"
    }
+  },
+  "allenai__Dolci-Instruct-SFT-Tool-Use": {
+   "sampled": 1500,
+   "raw_dups_removed": 0,
+   "adapter_failed": 0,
+   "linted": 1500,
+   "rows_with_tool_calls": 1369,
+   "tokens": {
+    "min": 250,
+    "p50": 1194,
+    "p95": 8897,
+    "max": 334792
+   },
+   "over": {
+    "2048": 254,
+    "4096": 101
+   },
+   "truncated_before_target": {
+    "2048": 224,
+    "4096": 101
+   },
+   "rows_with_code": {
+    "tool_args_not_json": 57,
+    "undeclared_tool": 1,
+    "tool_args_missing_required": 0,
+    "tool_args_unknown_key": 1,
+    "tool_call_id_mismatch": 0,
+    "tool_without_call": 2,
+    "empty_assistant": 8,
+    "no_assistant_target": 2,
+    "role_repeat": 14,
+    "duplicate_row": 0,
+    "template_error": 0,
+    "zero_target_tokens": 0,
+    "no_eos": 0
+   },
+   "errors": 372,
+   "warnings": 46,
+   "examples": {
+    "tool_args_not_json": "message 14: arguments of None are not JSON",
+    "undeclared_tool": "message 4: calls 'getPosts', not in tools",
+    "tool_args_unknown_key": "message 4: 'search_paper_by_title' has unknown argument 'limit'",
+    "tool_without_call": "message 2: tool message with no preceding tool_calls",
+    "empty_assistant": "message 4: assistant content is empty",
+    "no_assistant_target": "last message is 'user'; SFT has nothing to train on",
+    "role_repeat": "two consecutive 'assistant' turns"
+   }
   }
  }
 }

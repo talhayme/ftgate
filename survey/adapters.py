@@ -173,41 +173,55 @@ def hiyouga(row: dict) -> dict | None:
 
 # --- allenai/Dolci-Instruct-SFT-Tool-Use ------------------------------
 
+import ast
+
+
+def _python_call(line: str):
+    """`name(k="v", n=3)` → (name, {k: v, n: 3}); values are Python literals.
+
+    Dolci writes calls as Python expressions, not JSON. Anything that does
+    not parse is returned with the raw text as the arguments, so the
+    linter reports it rather than the adapter hiding it.
+    """
+    try:
+        node = ast.parse(line.strip(), mode="eval").body
+        if not isinstance(node, ast.Call):
+            return None, line
+        # names may be dotted: instagram.get_user_feed(...)
+        parts, f = [], node.func
+        while isinstance(f, ast.Attribute):
+            parts.append(f.attr); f = f.value
+        if not isinstance(f, ast.Name):
+            return None, line
+        name = ".".join([f.id] + parts[::-1])
+        args = {kw.arg: ast.literal_eval(kw.value) for kw in node.keywords if kw.arg}
+        return name, args
+    except (SyntaxError, ValueError):
+        return None, line
+
+
 def dolci(row: dict) -> dict | None:
     msgs, tools = [], []
     for m in row["messages"]:
         role, text = m["role"], m.get("content") or ""
         if role == "system":
-            fm = re.search(r"<functions>(.*?)</functions>", text, re.S)
-            if fm:
-                # one JSON object per line, or a JSON list
-                blob = fm.group(1).strip()
-                lst = _parse_json(blob)
-                if isinstance(lst, list): tools = _wrap_tools(lst)
-                else:
-                    for line in blob.splitlines():
-                        t = _parse_json(line.strip())
-                        if isinstance(t, dict): tools.append(t)
-                    tools = _wrap_tools(tools)
+            tools = _wrap_tools(_parse_json(m.get("functions"), []))
             msgs.append({"role": "system", "content": text})
         elif role == "environment":
             msgs.append({"role": "tool", "content": text})
-        elif role == "assistant" and "<function_calls>" in text:
+        elif role == "assistant" and m.get("function_calls"):
             calls = []
-            for block in FUNC_CALLS.findall(text):
-                for name, body in INVOKE.findall(block):
-                    args = {k: v for k, v in PARAM.findall(body)}
-                    calls.append({"type": "function", "function": {"name": name, "arguments": args}})
-                if not INVOKE.search(block):
-                    d = _parse_json(block)
-                    if isinstance(d, dict): calls.append({"type": "function", "function": {"name": d.get("name"), "arguments": d.get("arguments", {})}})
-                    elif isinstance(d, list):
-                        calls += [{"type": "function", "function": {"name": x.get("name"), "arguments": x.get("arguments", {})}} for x in d if isinstance(x, dict)]
-                    else: calls.append({"type": "function", "function": {"name": None, "arguments": block}})
-            msgs.append({"role": "assistant", "content": FUNC_CALLS.sub("", text).strip(), "tool_calls": calls})
+            for line in m["function_calls"].splitlines():
+                if not line.strip():
+                    continue
+                name, args = _python_call(line)
+                calls.append({"type": "function", "function": {"name": name, "arguments": args}})
+            msgs.append({"role": "assistant", "content": text, "tool_calls": calls})
         else:
             msgs.append({"role": role, "content": text})
-    return {"messages": msgs, "tools": tools, "tools_in_prompt": True}
+    # Dolci's system prompt only names the <functions> tags; the signatures
+    # are a separate field, so the template must render them.
+    return {"messages": msgs, "tools": tools}
 
 
 ADAPTERS = {

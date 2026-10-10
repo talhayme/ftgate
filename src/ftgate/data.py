@@ -132,6 +132,10 @@ def check_structure(n: int, msgs: list[dict], tools: list[dict], issues: list[Is
                     args = json.loads(args)
                 except json.JSONDecodeError:
                     issues.append(Issue("error", "tool_args_not_json", n, f"message {i}: arguments of {name!r} are not JSON")); args = None
+            if name is None:
+                # Already reported as unparseable arguments; a second finding
+                # for the missing name would count the same defect twice.
+                continue
             if tools and name not in declared:
                 issues.append(Issue("error", "undeclared_tool", n, f"message {i}: calls {name!r}, not in tools"))
             elif tools and isinstance(args, dict):
