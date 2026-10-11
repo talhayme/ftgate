@@ -74,8 +74,9 @@ not read.
 
 Separately, 8.6% of `func_calling` rows and 3.6% of `glaive_func_calling`
 rows end on a `tool` message with no assistant reply after it: there is no
-answer to train on. Schemas and calls are internally consistent — zero
-undeclared tools, zero missing required arguments.
+answer to train on. In the two `func_calling` configs schemas and calls are
+internally consistent — zero undeclared tools, zero missing required
+arguments; in `glaive_func_calling` 12 rows of 5,209 (0.2%) disagree.
 
 **glaive-function-calling-v2** (original text format). Short rows, no
 truncation issue. The format itself is the finding: `ASSISTANT: <functioncall>
