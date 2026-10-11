@@ -1,6 +1,6 @@
 [project]
 name = "ftgate"
-version = "0.1.1"
+version = "0.1.2"
 description = "Regression checks for small fine-tuned models on tool calling: do runtimes send the bytes the model was trained on?"
 readme = "README.md"
 requires-python = ">=3.10"
