@@ -19,7 +19,7 @@ MODEL = sys.argv[1] if len(sys.argv) > 1 else "Qwen/Qwen2.5-0.5B-Instruct"
 CUTS = (2048, 4096)
 CODES = ["tool_args_not_json", "undeclared_tool", "tool_args_missing_required", "tool_args_unknown_key",
          "tool_call_id_mismatch", "tool_without_call", "empty_assistant", "no_assistant_target",
-         "role_repeat", "duplicate_row", "template_error", "zero_target_tokens", "no_eos"]
+         "role_repeat", "duplicate_row", "repeated_conversation", "template_error", "zero_target_tokens", "no_eos"]
 
 results = {}
 (HERE / "adapted").mkdir(exist_ok=True)
@@ -65,13 +65,13 @@ for name, fn in ADAPTERS.items():
 
 # ---- markdown table
 def pct(k, n): return f"{100*k/n:.1f}%" if n else "–"
-lines = [f"| dataset | sampled | adapter fail | rows w/ calls | tokens p50 / p95 / max | >2048 | cut before answer @2048 | >4096 | args not JSON | undeclared tool | missing required | unknown key | tool msg w/o call | empty assistant | no final assistant turn | dup rows |",
-         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+lines = [f"| dataset | sampled | adapter fail | rows w/ calls | tokens p50 / p95 / max | >2048 | cut before answer @2048 | >4096 | args not JSON | undeclared tool | missing required | unknown key | tool msg w/o call | empty assistant | no final assistant turn | exact dup rows | same conversation, other tools |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
 for name, r in results.items():
     t = r["tokens"] or {}; n = r["linted"]; c = r["rows_with_code"]
     lines.append(f"| {name.replace('__', '/')} | {r['sampled']} | {r['adapter_failed']} | {pct(r['rows_with_tool_calls'], n)} | "
                  f"{t.get('p50','–')} / {t.get('p95','–')} / {t.get('max','–')} | {pct(r['over']['2048'], n)} | {pct(r['truncated_before_target']['2048'], n)} | {pct(r['over']['4096'], n)} | "
                  f"{pct(c['tool_args_not_json'], n)} | {pct(c['undeclared_tool'], n)} | {pct(c['tool_args_missing_required'], n)} | {pct(c['tool_args_unknown_key'], n)} | "
-                 f"{pct(c['tool_without_call'], n)} | {pct(c['empty_assistant'], n)} | {pct(c['no_assistant_target'], n)} | {pct(c['duplicate_row'], n)} |")
+                 f"{pct(c['tool_without_call'], n)} | {pct(c['empty_assistant'], n)} | {pct(c['no_assistant_target'], n)} | {pct(c['duplicate_row'], n)} | {pct(c['repeated_conversation'], n)} |")
 (HERE / "results.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 print("\n" + "\n".join(lines))

@@ -30,6 +30,10 @@ def sample(ds, cfg, split, n, out, seed=7):
     # means fewer, distinct windows rather than repeated rows.
     aligned = list(range(0, max(100, total - total % 100), 100))
     offsets = sorted(rng.sample(aligned, min(chunks, len(aligned))))
+    # A split this small is cheaper to read whole than to argue about: the
+    # first published hermes figure came from a sample of a 1,893-row split.
+    if total <= 2 * n:
+        offsets = list(range(0, total, 100))
     rows = []
     for off in offsets:
         time.sleep(1.5)

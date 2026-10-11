@@ -213,14 +213,26 @@ def _shingles(text: str, k: int = 5) -> set[int]:
     return {hash(" ".join(words[i:i + k])) for i in range(max(1, len(words) - k + 1))}
 
 
-def check_duplicates(rows_text: list[str], issues: list[Issue], eval_text: list[str] | None, threshold: float = 0.8) -> None:
+def check_duplicates(rows_text: list[str], issues: list[Issue], eval_text: list[str] | None, threshold: float = 0.8,
+                     rows_tools: list[str] | None = None) -> None:
+    # A row is an exact duplicate only if the tools match too: the template
+    # renders them, so two rows with the same messages and different tool
+    # definitions train on different text. Those are reported as what they
+    # are — a repeated conversation — not as duplicates. (The first survey
+    # counted them as duplicates and blamed a dataset for it.)
     seen: dict[str, int] = {}
+    seen_conversation: dict[str, int] = {}
     for n, t in enumerate(rows_text):
-        h = hashlib.sha256(t.encode()).hexdigest()
+        tools = rows_tools[n] if rows_tools else ""
+        h = hashlib.sha256((t + "\x00" + tools).encode()).hexdigest()
+        hc = hashlib.sha256(t.encode()).hexdigest()
         if h in seen:
             issues.append(Issue("warning", "duplicate_row", n, f"exact duplicate of row {seen[h]}"))
-        else:
-            seen[h] = n
+        elif hc in seen_conversation:
+            issues.append(Issue("warning", "repeated_conversation", n,
+                                f"same messages as row {seen_conversation[hc]}, different tool definitions"))
+        seen.setdefault(h, n)
+        seen_conversation.setdefault(hc, n)
     if eval_text:
         ev = [_shingles(t) for t in eval_text]
         for n, t in enumerate(rows_text):
@@ -255,12 +267,12 @@ def lint(path: Path, model: str | None = None, max_seq_len: int | None = None,
         from ftgate.reference import tokenizer
         tok = tokenizer(model)
 
-    lengths: list[int] = []; ratios: list[float] = []; texts: list[str] = []
+    lengths: list[int] = []; ratios: list[float] = []; texts: list[str] = []; tool_texts: list[str] = []
     roles = Counter()
     for n, row in enumerate(rows):
         rf = detect_format(row)
         if rf == "unknown":
-            issues.append(Issue("error", "unknown_format", n, f"keys {sorted(row)[:6]} match no known format")); texts.append(""); continue
+            issues.append(Issue("error", "unknown_format", n, f"keys {sorted(row)[:6]} match no known format")); texts.append(""); tool_texts.append(""); continue
         if rf != fmt:
             issues.append(Issue("warning", "mixed_format", n, f"row is {rf}, file is mostly {fmt}"))
         msgs = to_messages(row, rf)
@@ -272,13 +284,14 @@ def lint(path: Path, model: str | None = None, max_seq_len: int | None = None,
         if tok is not None:
             check_with_model(n, msgs, tools, tok, max_seq_len, issues, lengths, bool(row.get("tools_in_prompt")))
         texts.append(json.dumps(msgs, sort_keys=True, ensure_ascii=False))
+        tool_texts.append(json.dumps(tools, sort_keys=True, ensure_ascii=False))
 
     eval_text = None
     if eval_path:
         with eval_path.open(encoding="utf-8") as fh:
             eval_text = [json.dumps(to_messages(r, detect_format(r)), sort_keys=True, ensure_ascii=False)
                          for r in (json.loads(l) for l in fh if l.strip())]
-    check_duplicates(texts, issues, eval_text)
+    check_duplicates(texts, issues, eval_text, rows_tools=tool_texts)
 
     rep.stats = {"roles": dict(roles)}
     if lengths:

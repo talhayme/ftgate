@@ -141,3 +141,19 @@ def test_token_stats_are_reported(tmp_path, tok_available):
     rep = data.lint(write(tmp_path, [chat(("user", "hi"), ("assistant", "hello"))]), model=MODEL)
     assert set(rep.stats["tokens"]) == {"min", "p50", "p95", "max"}
     assert "no_eos" not in codes(rep)  # Qwen's template ends the assistant turn with <|im_end|> == eos
+
+
+def test_the_same_messages_with_different_tools_are_not_exact_duplicates(tmp_path):
+    """glaive repeats a conversation under reworded tool descriptions in ~3%
+    of rows. The template renders the tools, so those rows train on different
+    text; the first survey called them duplicates and blamed a conversion."""
+    def row(description):
+        r = chat(("user", "convert 5 USD"), ("assistant", "ok"))
+        r["tools"] = [{"type": "function", "function": {"name": "convert", "description": description,
+                                                        "parameters": {"type": "object", "properties": {}}}}]
+        return r
+    rep = data.lint(write(tmp_path, [row("The amount to be converted"), row("The amount to convert"),
+                                     row("The amount to convert")]))
+    by_code = {i.code: i.row for i in rep.issues}
+    assert by_code.get("repeated_conversation") == 1      # same messages, different tools
+    assert by_code.get("duplicate_row") == 2              # same messages and same tools

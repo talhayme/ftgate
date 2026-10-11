@@ -2,24 +2,24 @@
  "model": "Qwen/Qwen2.5-0.5B-Instruct",
  "results": {
   "NousResearch__hermes-function-calling-v1": {
-   "sampled": 1115,
-   "raw_dups_removed": 385,
+   "sampled": 1893,
+   "raw_dups_removed": 0,
    "adapter_failed": 0,
-   "linted": 1115,
-   "rows_with_tool_calls": 717,
+   "linted": 1893,
+   "rows_with_tool_calls": 1090,
    "tokens": {
-    "min": 456,
-    "p50": 1838,
-    "p95": 3396,
-    "max": 3964
+    "min": 434,
+    "p50": 2170,
+    "p95": 3438,
+    "max": 4750
    },
    "over": {
-    "2048": 499,
-    "4096": 0
+    "2048": 992,
+    "4096": 1
    },
    "truncated_before_target": {
-    "2048": 424,
-    "4096": 0
+    "2048": 853,
+    "4096": 1
    },
    "rows_with_code": {
     "tool_args_not_json": 0,
@@ -27,17 +27,18 @@
     "tool_args_missing_required": 0,
     "tool_args_unknown_key": 0,
     "tool_call_id_mismatch": 0,
-    "tool_without_call": 5,
+    "tool_without_call": 10,
     "empty_assistant": 0,
-    "no_assistant_target": 108,
+    "no_assistant_target": 163,
     "role_repeat": 0,
     "duplicate_row": 0,
+    "repeated_conversation": 0,
     "template_error": 0,
     "zero_target_tokens": 0,
     "no_eos": 0
    },
-   "errors": 537,
-   "warnings": 75,
+   "errors": 1026,
+   "warnings": 139,
    "examples": {
     "tool_without_call": "message 2: tool message with no preceding tool_calls",
     "no_assistant_target": "last message is 'tool'; SFT has nothing to train on"
@@ -74,6 +75,7 @@
     "no_assistant_target": 21,
     "role_repeat": 0,
     "duplicate_row": 0,
+    "repeated_conversation": 0,
     "template_error": 0,
     "zero_target_tokens": 0,
     "no_eos": 0
@@ -117,7 +119,8 @@
     "empty_assistant": 0,
     "no_assistant_target": 0,
     "role_repeat": 0,
-    "duplicate_row": 5,
+    "duplicate_row": 1,
+    "repeated_conversation": 4,
     "template_error": 0,
     "zero_target_tokens": 0,
     "no_eos": 0
@@ -127,7 +130,8 @@
    "examples": {
     "tool_args_missing_required": "message 1: 'calculate_electric_field' missing required 'permitivity'",
     "tool_args_unknown_key": "message 1: 'search' has unknown argument 'pageno'",
-    "duplicate_row": "exact duplicate of row 154"
+    "duplicate_row": "exact duplicate of row 518",
+    "repeated_conversation": "same messages as row 154, different tool definitions"
    }
   },
   "argilla__apigen-function-calling": {
@@ -161,6 +165,7 @@
     "no_assistant_target": 0,
     "role_repeat": 0,
     "duplicate_row": 0,
+    "repeated_conversation": 0,
     "template_error": 0,
     "zero_target_tokens": 0,
     "no_eos": 0
@@ -201,7 +206,8 @@
     "empty_assistant": 0,
     "no_assistant_target": 0,
     "role_repeat": 0,
-    "duplicate_row": 47,
+    "duplicate_row": 0,
+    "repeated_conversation": 47,
     "template_error": 0,
     "zero_target_tokens": 0,
     "no_eos": 0
@@ -211,7 +217,7 @@
    "examples": {
     "tool_args_missing_required": "message 1: 'search_books' missing required 'author'",
     "tool_without_call": "message 2: tool message with no preceding tool_calls",
-    "duplicate_row": "exact duplicate of row 36"
+    "repeated_conversation": "same messages as row 36, different tool definitions"
    }
   },
   "allenai__Dolci-Instruct-SFT-Tool-Use": {
@@ -245,6 +251,7 @@
     "no_assistant_target": 2,
     "role_repeat": 14,
     "duplicate_row": 0,
+    "repeated_conversation": 0,
     "template_error": 0,
     "zero_target_tokens": 0,
     "no_eos": 0

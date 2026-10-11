@@ -1,0 +1,56 @@
+{
+ "model": "Qwen/Qwen2.5-0.5B-Instruct",
+ "results": {
+  "func_calling": {
+   "rows": 1893,
+   "unique_ids": 1893,
+   "adapter_failed": 0,
+   "linted": 1893,
+   "tokens": {
+    "min": 434,
+    "p50": 2170,
+    "p95": 3438,
+    "max": 4750
+   },
+   "over_2048": 992,
+   "cut_before_answer_2048": 853,
+   "no_final_assistant": 163,
+   "over_4096": 1,
+   "cut_before_answer_4096": 1
+  },
+  "func_calling_singleturn": {
+   "rows": 1893,
+   "unique_ids": 1893,
+   "adapter_failed": 0,
+   "linted": 1893,
+   "tokens": {
+    "min": 312,
+    "p50": 1135,
+    "p95": 3437,
+    "max": 3964
+   },
+   "over_2048": 794,
+   "cut_before_answer_2048": 793,
+   "no_final_assistant": 0,
+   "over_4096": 0,
+   "cut_before_answer_4096": 0
+  },
+  "glaive_func_calling": {
+   "rows": 5209,
+   "unique_ids": 5209,
+   "adapter_failed": 0,
+   "linted": 5209,
+   "tokens": {
+    "min": 157,
+    "p50": 632,
+    "p95": 1005,
+    "max": 4793
+   },
+   "over_2048": 12,
+   "cut_before_answer_2048": 5,
+   "no_final_assistant": 185,
+   "over_4096": 1,
+   "cut_before_answer_4096": 1
+  }
+ }
+}

@@ -11,12 +11,12 @@ findings do not.
 
 ## Method
 
-- **Sampling.** 1,500 rows per dataset through the `datasets-server` rows
-  API: 15 windows of 100 rows at seeded, 100-aligned offsets across the
-  `train` split, so the sample is not the head of the file. Byte-identical
-  raw rows are dropped before anything else (the first hermes run had 385
-  of them from overlapping windows — a sampling bug, fixed; the column
-  `raw dups removed` keeps that honest).
+- **Sampling.** About 1,500 rows per dataset through the `datasets-server`
+  rows API: 15 windows of 100 rows at seeded offsets across the `train`
+  split, so the sample is not the head of the file. Byte-identical raw rows
+  are dropped before anything else (8 in glaive, 17 in its ShareGPT
+  conversion). **hermes is not sampled**: its tool-calling configs are small
+  enough to read whole, and `hermes_full.py` does.
 - **Adapters.** None of the six is in `messages`+`tools` shape. Each has an
   adapter (`adapters.py`) and the adapter is part of what is measured:
   its parse failures are a column, and where a dataset's own format is
@@ -38,25 +38,43 @@ runner). Headline numbers, Qwen2.5 template:
 
 | dataset | rows | p50 tokens | >2048 | **cut before the answer @2048** | schema vs call | no final assistant turn |
 |---|---|---|---|---|---|---|
-| NousResearch/hermes-function-calling-v1 (`func_calling`) | 1,115 | 1,838 | 44.8% | **38.0%** | clean | **9.7%** |
+| NousResearch/hermes-function-calling-v1 (`func_calling`, all rows) | 1,893 | 2,170 | 52.4% | **45.1%** | clean | **8.6%** |
 | glaiveai/glaive-function-calling-v2 | 1,492 | 404 | 0.2% | 0.1% | 0.3% | 1.4% |
 | lockon/xlam-function-calling-60k | 1,500 | 496 | 0.0% | 0.0% | 1.5% missing required | 0.0% |
 | argilla/apigen-function-calling | 1,500 | 482 | 0.1% | 0.0% | 1.3% missing required | 0.0% |
-| hiyouga/glaive-function-calling-v2-sharegpt | 1,483 | 472 | 0.1% | 0.1% | 0.1% | 0.0% (3.2% duplicate rows) |
+| hiyouga/glaive-function-calling-v2-sharegpt | 1,483 | 472 | 0.1% | 0.1% | 0.1% | 0.0% (3.2% repeat a conversation under other tool definitions) |
 | allenai/Dolci-Instruct-SFT-Tool-Use | 1,500 | 1,194 | 16.9% | **14.9%** | 3.8% unparseable calls | 0.1% |
 
 ## What the numbers mean, dataset by dataset
 
 **hermes-function-calling-v1.** The system prompt carries every tool
-signature as JSON, so rows are long: median 1,838 tokens under the Qwen
-template, 45% over 2,048. The part that matters: for **38% of all rows**
-a 2,048 cutoff falls *before the final assistant turn* — the trainer keeps
-the prompt and discards the answer. Without loss masking the row still trains — on the system prompt and the tool signatures, not on a call. With response-only masking (`assistant_only_loss` in TRL, `train_on_responses_only` in Unsloth; opt-in in both) it contributes exactly zero gradient. Either way the model is never shown the answer.
-A fine-tune of a small model at the common default `max_seq_length=2048`
-shows the model the answer in fewer than two thirds of this dataset, without
-any warning. At
-4,096 the problem disappears. Separately, 9.7% of rows end on a `tool`
-message with no assistant reply after it: there is no answer to train on. Schemas and calls are internally consistent — zero
+signature as JSON, so rows are long. The dataset has five configs; three are
+tool calling, and all three were read in full:
+
+| hermes config | rows (all read) | p50 tokens | rows > 2,048 | **cut before the answer @2,048** | @4,096 | no final assistant turn |
+|---|---|---|---|---|---|---|
+| `func_calling` (multi-turn) | 1,893 | 2,170 | 52.4% | **45.1%** | 0.1% | 8.6% |
+| `func_calling_singleturn` | 1,893 | 1,135 | 41.9% | **41.9%** | 0.0% | 0.0% |
+| `glaive_func_calling` | 5,209 | 632 | 0.2% | 0.1% | 0.0% | 3.6% |
+
+In the two `func_calling` configs a 2,048 cutoff falls *before the final
+assistant turn* in **43.5% of rows** (1,646 of 3,786) — the trainer keeps the
+prompt and discards the answer. Without loss masking such a row still trains,
+on the system prompt and the tool signatures, not on a call. With
+response-only masking (`assistant_only_loss` in TRL,
+`train_on_responses_only` in Unsloth; opt-in in both) it contributes exactly
+zero gradient. Either way the model is never shown the answer. At 4,096 the
+problem disappears (one row of 3,786).
+
+The third config, `glaive_func_calling`, is 45% of the dataset's rows and is
+almost untouched (0.1%), so across all three tool-calling configs the figure
+is 18.4% (1,651 of 8,995). Which number applies to you depends on which
+configs you load. The two `json_mode` configs are not tool calling and were
+not read.
+
+Separately, 8.6% of `func_calling` rows and 3.6% of `glaive_func_calling`
+rows end on a `tool` message with no assistant reply after it: there is no
+answer to train on. Schemas and calls are internally consistent — zero
 undeclared tools, zero missing required arguments.
 
 **glaive-function-calling-v2** (original text format). Short rows, no
@@ -79,9 +97,12 @@ schema and the call disagree; a model learns whichever it is shown.
 
 **glaive-function-calling-v2-sharegpt** (hiyouga's conversion). The
 LLaMA-Factory roles (`function_call`, `observation`) convert cleanly and
-the single-quote quirk is gone. 3.2% of rows are exact duplicates after
-raw de-duplication — the conversion drops the system prompt, so rows that
-differed only there collapse into one.
+the single-quote quirk is gone. 3.2% of rows repeat a conversation that
+appears elsewhere in the sample under different tool definitions — usually
+the same tools with a reworded description. The original glaive has the same
+thing at the same rate (3.4% once the system prompt is set aside); there it
+is hidden inside the prompt text. These are not exact duplicates: the
+template renders the tools, so the rows train on different text.
 
 **Dolci-Instruct-SFT-Tool-Use** (AllenAI). Structured fields rather than
 text: tool signatures in a `functions` field on the system message, calls
@@ -104,10 +125,11 @@ undeclared name in 1,500 rows).
 
 ## Caveats
 
-- 1,500 rows per dataset. Rates near 0.1% are one or two rows.
+- About 1,500 rows per dataset (hermes read whole). In a sample, rates near
+  0.1% are one or two rows.
 - Truncation figures are for the Qwen2.5 template. Llama-3 or Gemma
   templates render tools differently and will move the hermes numbers,
-  though not from 38% to zero.
+  though not from 44% to zero.
 - The adapters are mine. The schema findings depend on reading each
   dataset's conventions correctly; the xLAM "no default = required" rule is
   stated in that dataset's documentation, the glaive argument-string quirk
@@ -117,3 +139,15 @@ undeclared name in 1,500 rows).
   and Unsloth's `train_on_responses_only` is a helper you call. The rows
   affected are the same either way; what differs is whether they train on
   the prompt or on nothing.
+- **Two figures on this page were wrong until 11 October 2026.**
+  *hermes:* the page reported 38.0% "of hermes-function-calling-v1". That
+  came from a 1,500-row sample of one config (`func_calling`) whose windows
+  overlapped, leaving 1,115 distinct rows, and it was quoted as if it
+  described the whole dataset. Read in full, that config is 45.1%, its
+  single-turn sibling 41.9%, and the largest config 0.1%.
+  *hiyouga:* the page said the ShareGPT conversion "collapses 3.2% of rows
+  into duplicates by dropping the system prompt". The linter compared
+  messages and ignored tools; those rows differ in their tool definitions,
+  and the original dataset has the same repetition. The linter now treats a
+  row as an exact duplicate only if the tools match too
+  (`repeated_conversation` otherwise).
