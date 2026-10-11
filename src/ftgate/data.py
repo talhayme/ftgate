@@ -200,7 +200,7 @@ def check_with_model(n: int, msgs: list[dict], tools: list[dict], tok, max_seq_l
     if max_seq_len and len(ids) > max_seq_len:
         if n_prefix >= max_seq_len:
             issues.append(Issue("error", "truncated_before_target", n,
-                                f"{len(ids)} tokens > max_seq_len {max_seq_len}; the cut falls before the assistant turn — this row trains nothing"))
+                                f"{len(ids)} tokens > max_seq_len {max_seq_len}; the cut falls before the assistant turn — the answer is never trained"))
         else:
             issues.append(Issue("warning", "truncated", n,
                                 f"{len(ids)} tokens > max_seq_len {max_seq_len}; {len(ids) - max_seq_len} target tokens are silently dropped"))

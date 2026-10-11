@@ -51,12 +51,12 @@ runner). Headline numbers, Qwen2.5 template:
 signature as JSON, so rows are long: median 1,838 tokens under the Qwen
 template, 45% over 2,048. The part that matters: for **38% of all rows**
 a 2,048 cutoff falls *before the final assistant turn* — the trainer keeps
-the prompt and discards the answer, and the row contributes nothing. A
-fine-tune of a small model at the common default `max_seq_length=2048`
-trains on fewer than two thirds of this dataset without any warning. At
+the prompt and discards the answer. Without loss masking the row still trains — on the system prompt and the tool signatures, not on a call. With response-only masking (`assistant_only_loss` in TRL, `train_on_responses_only` in Unsloth; opt-in in both) it contributes exactly zero gradient. Either way the model is never shown the answer.
+A fine-tune of a small model at the common default `max_seq_length=2048`
+shows the model the answer in fewer than two thirds of this dataset, without
+any warning. At
 4,096 the problem disappears. Separately, 9.7% of rows end on a `tool`
-message with no assistant reply after it: with response-only masking
-there is no target. Schemas and calls are internally consistent — zero
+message with no assistant reply after it: there is no answer to train on. Schemas and calls are internally consistent — zero
 undeclared tools, zero missing required arguments.
 
 **glaive-function-calling-v2** (original text format). Short rows, no
@@ -112,5 +112,8 @@ undeclared name in 1,500 rows).
   dataset's conventions correctly; the xLAM "no default = required" rule is
   stated in that dataset's documentation, the glaive argument-string quirk
   is visible in the raw text.
-- "No final assistant turn" is a problem only under response-only
-  masking, which is the default in Unsloth/TRL's SFT recipes.
+- An earlier version of this page called response-only masking "the default
+  in Unsloth/TRL". It is not: TRL's `assistant_only_loss` defaults to `False`
+  and Unsloth's `train_on_responses_only` is a helper you call. The rows
+  affected are the same either way; what differs is whether they train on
+  the prompt or on nothing.

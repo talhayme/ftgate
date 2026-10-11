@@ -65,7 +65,7 @@ ftgate data train.jsonl --model Qwen/Qwen2.5-0.5B-Instruct --max-seq-len 2048 \
 Rows in `messages`, ShareGPT, Alpaca or preference (`chosen`/`rejected`)
 shape. Reports what the trainer will silently do to each row: an assistant
 turn that renders to zero target tokens, a conversation cut by
-`max_seq_len` before the answer (trains nothing) or inside it, a row that
+`max_seq_len` before the answer (the answer is never trained) or inside it, a row that
 never ends with EOS, a template that raises on the row. Structural checks:
 empty or missing assistant target, role order, tool calls against the
 declared schema (missing required / unknown arguments / undeclared tool /
