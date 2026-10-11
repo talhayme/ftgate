@@ -99,14 +99,14 @@ Failure reasons show the produced arguments next to the expected ones.
 
 ```yaml
 # GitHub Actions
-- uses: talhayme/ftgate@v0.1.2
+- uses: talhayme/ftgate@v0.1.3
   with: { dataset: data/train.jsonl, model: Qwen/Qwen2.5-0.5B-Instruct, max-seq-len: "2048" }
 ```
 
 ```yaml
 # .pre-commit-config.yaml
 - repo: https://github.com/talhayme/ftgate
-  rev: v0.1.2
+  rev: v0.1.3
   hooks: [{ id: ftgate-data, args: [--fail-on, error] }]
 ```
 
